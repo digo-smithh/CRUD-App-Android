@@ -4,27 +4,32 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".MainActivity"
->
+tools:context=".MainActivity">
 
-<androidx.core.widget.NestedScrollView
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:paddingBottom="100dp"
-android:clipToPadding="false"/>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-<com.google.android.material.bottomappbar.BottomAppBar
-android:id="@+id/bottomAppBar"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_gravity="bottom"
-style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
-app:menu="@menu/bottom_app_bar"/>
+    </androidx.core.widget.NestedScrollView>
 
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        style="@style/Widget.MaterialComponents.BottomAppBar"
+        android:id="@+id/bottomAppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_app_bar"
+        app:backgroundTint="#FFDE03"
+        app:fabCradleMargin="12dp"
+        app:fabCradleRoundedCornerRadius="0dp"
+        app:fabCradleVerticalOffset="16dp"
+        app:hideOnScroll="true"/>
 
-app:layout_anchor="@id/bottomAppBar" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/bottomAppBar" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
