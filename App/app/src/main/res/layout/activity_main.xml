@@ -14,17 +14,19 @@ tools:context=".MainActivity">
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
+        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
         app:backgroundTint="@color/colorYellow"
         app:buttonGravity="bottom|top"
-        app:fabCradleMargin="0dp"
-        app:fabCradleRoundedCornerRadius="0dp"
-        app:fabAlignmentMode="end"
+        app:fabCradleMargin="5dp"
+        app:fabCradleRoundedCornerRadius="5dp"
+        app:fabAlignmentMode="center"
         app:hideOnScroll="true"
-        app:menu="@menu/bottom_app_bar"/>
+        app:menu="@menu/bottom_app_bar_menu"
+        app:navigationIcon="@drawable/ic_config"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button"

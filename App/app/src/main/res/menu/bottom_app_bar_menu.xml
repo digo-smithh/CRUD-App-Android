@@ -9,11 +9,4 @@ xmlns:app="http://schemas.android.com/apk/res-auto">
     android:orderInCategory="2"
     app:showAsAction="ifRoom" />
 
-<item
-    android:id="@+id/config"
-    android:title="Config"
-    android:icon="@drawable/ic_config"
-    android:orderInCategory="1"
-    app:showAsAction="ifRoom" />
-
 </menu>
