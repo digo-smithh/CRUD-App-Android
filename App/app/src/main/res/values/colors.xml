@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#fcfcfc</color>
+    <color name="colorRed">#e3d134</color>
+    <color name="colorGreen">#e3d134</color>
+    <color name="colorBlue">#e3d134</color>
     <color name="colorYellow">#e3d134</color>
+    <color name="colorPink">#e3d134</color>
+    <color name="colorPurple">#e3d134</color>
     <color name="colorBlack">#212121</color>
 </resources>
