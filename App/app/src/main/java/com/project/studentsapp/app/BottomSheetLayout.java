@@ -76,7 +76,6 @@ public class BottomSheetLayout extends BottomSheetDialogFragment {
                 HtmlCompat.fromHtml("<font color='#212121'>Yellow</font>", HtmlCompat.FROM_HTML_MODE_LEGACY),
                 HtmlCompat.fromHtml("<font color='#212121'>Green</font>", HtmlCompat.FROM_HTML_MODE_LEGACY),
                 HtmlCompat.fromHtml("<font color='#212121'>Blue</font>", HtmlCompat.FROM_HTML_MODE_LEGACY),
-                HtmlCompat.fromHtml("<font color='#212121'>Purple</font>", HtmlCompat.FROM_HTML_MODE_LEGACY),
                 HtmlCompat.fromHtml("<font color='#212121'>Pink</font>", HtmlCompat.FROM_HTML_MODE_LEGACY)
         };
 

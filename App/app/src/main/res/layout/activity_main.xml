@@ -8,7 +8,7 @@ tools:context=".app.MainActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </androidx.core.widget.NestedScrollView>
@@ -19,7 +19,7 @@ tools:context=".app.MainActivity">
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorYellow"
+        app:backgroundTint="@color/colorPink"
         app:buttonGravity="bottom|top"
         app:fabCradleMargin="5dp"
         app:fabCradleRoundedCornerRadius="5dp"
