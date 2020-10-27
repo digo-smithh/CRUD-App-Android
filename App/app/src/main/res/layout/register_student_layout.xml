@@ -30,54 +30,49 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="60px"
-        android:paddingRight="60px">
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp">
 
         <EditText
             android:id="@+id/studentCode"
             android:layout_width="80sp"
             android:layout_height="wrap_content"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5sp"
-            android:text="Code"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10px"
-            />
+            android:paddingBottom="20px"
+            android:paddingLeft="5px"
+            android:paddingRight="5px"
+            android:paddingTop="5px"
+            android:textSize="20sp"
+            android:hint="Code"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/border_edit_text"
+            android:textColorHint="@color/colorGray"/>
 
         <EditText
             android:id="@+id/studentName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5sp"
-            android:text="Name"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10px"/>
+            android:paddingBottom="20px"
+            android:paddingLeft="5px"
+            android:paddingRight="5px"
+            android:paddingTop="5px"
+            android:textSize="20sp"
+            android:hint="Name"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/border_edit_text"
+            android:textColorHint="@color/colorGray"/>
 
         <EditText
             android:id="@+id/studentEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5sp"
-            android:text="Email"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="16sp"
-            android:layout_marginBottom="10px"/>
+            android:paddingBottom="20px"
+            android:paddingLeft="5px"
+            android:paddingRight="5px"
+            android:paddingTop="5px"
+            android:textSize="20sp"
+            android:hint="Email"
+            android:background="@drawable/border_edit_text"
+            android:textColorHint="@color/colorGray"/>
 
     </LinearLayout>
 
