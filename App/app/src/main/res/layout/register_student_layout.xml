@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/titleRegister"
@@ -9,7 +10,8 @@
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/rounded_border"
-        android:paddingTop="30px">
+        android:paddingTop="30px"
+        android:elevation="4dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,4 +24,72 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/formStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="60px"
+        android:paddingRight="60px">
+
+        <EditText
+            android:id="@+id/studentCode"
+            android:layout_width="80sp"
+            android:layout_height="wrap_content"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5sp"
+            android:text="Code"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:layout_marginBottom="10px"
+            />
+
+        <EditText
+            android:id="@+id/studentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5sp"
+            android:text="Name"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:layout_marginBottom="10px"/>
+
+        <EditText
+            android:id="@+id/studentEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5sp"
+            android:text="Email"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16sp"
+            android:layout_marginBottom="10px"/>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnConsultar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_arrow"
+        android:background="@drawable/rounded_button"
+        android:elevation="4dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
