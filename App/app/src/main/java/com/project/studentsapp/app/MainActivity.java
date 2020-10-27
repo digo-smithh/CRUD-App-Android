@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -47,5 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateView() {
         ListViewAdapter adapter = new ListViewAdapter(this, R.layout.list_item_layout, studentList);
+        ListView listView = (ListView) findViewById(R.id.listView);
+        listView.setAdapter(adapter);
     }
 }
