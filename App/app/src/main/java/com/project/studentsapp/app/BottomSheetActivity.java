@@ -18,11 +18,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.project.studentsapp.R;
 import com.project.studentsapp.data.*;
 
-public class BottomSheetLayout extends BottomSheetDialogFragment {
+public class BottomSheetActivity extends BottomSheetDialogFragment {
 
     MainActivity context = null;
 
-    public BottomSheetLayout(MainActivity context) {
+    public BottomSheetActivity(MainActivity context) {
         this.context = context;
     }
 

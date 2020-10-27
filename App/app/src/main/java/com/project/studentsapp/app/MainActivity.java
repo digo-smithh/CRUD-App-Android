@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final BottomSheetLayout bottomSheetLayout = new BottomSheetLayout(MainActivity.this);
-                bottomSheetLayout.show(getSupportFragmentManager(), bottomSheetLayout.getTag());
+                final BottomSheetActivity bottomSheetActivity = new BottomSheetActivity(MainActivity.this);
+                bottomSheetActivity.show(getSupportFragmentManager(), bottomSheetActivity.getTag());
             }
         });
     }
