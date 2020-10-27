@@ -37,10 +37,11 @@ tools:context=".app.MainActivity">
         android:layout_gravity="bottom"
         app:backgroundTint="@color/colorBlue"
         app:buttonGravity="bottom|top"
-        app:fabCradleMargin="5dp"
-        app:fabCradleRoundedCornerRadius="5dp"
+        app:fabCradleMargin="0dp"
+        app:fabCradleRoundedCornerRadius="0dp"
         app:fabAlignmentMode="center"
         app:hideOnScroll="true"
+        android:elevation="4dp"
         app:menu="@menu/bottom_app_bar_menu"
         app:navigationIcon="@drawable/ic_config"/>
 
@@ -49,7 +50,7 @@ tools:context=".app.MainActivity">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/colorBlack"
+        app:backgroundTint="@color/colorPrimary"
         app:hideOnScroll="true"
         app:layout_anchor="@id/bottomAppBar"/>
 

@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/rounded_border">
+        android:background="@drawable/rounded_border"
+        android:paddingTop="30px">
 
         <TextView
             android:layout_width="wrap_content"
@@ -17,7 +18,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Register a student"
             android:textColor="@color/colorPrimary"
-            android:textSize="30sp" />
+            android:textSize="28sp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
