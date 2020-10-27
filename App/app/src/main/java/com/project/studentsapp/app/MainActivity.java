@@ -8,8 +8,14 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.project.studentsapp.R;
+import com.project.studentsapp.data.Student;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    List<Student> studentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         final ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
+
+        studentList = new ArrayList<>();
 
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,5 +43,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bottom_app_bar_menu, menu);
         return true;
+    }
+
+    private void updateView() {
+        ListViewAdapter adapter = new ListViewAdapter(this, R.layout.list_item_layout, studentList);
     }
 }

@@ -14,13 +14,13 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class ListViewActivity extends ArrayAdapter<Student> {
+public class ListViewAdapter extends ArrayAdapter<Student> {
 
     Context context;
     int resource;
     List<Student> objects;
 
-    public ListViewActivity(@NonNull Context context, int resource, @NonNull List<Student> objects) {
+    public ListViewAdapter(@NonNull Context context, int resource, @NonNull List<Student> objects) {
         super(context, resource, objects);
 
         this.context = context;
