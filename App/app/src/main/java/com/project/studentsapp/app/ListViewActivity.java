@@ -1,57 +1,49 @@
 package com.project.studentsapp.app;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.ListActivity;
+import com.project.studentsapp.R;
+import com.project.studentsapp.data.*;
 import android.content.Context;
-import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class ListViewActivity extends Activity {
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-    String[] wordlist = new String[] { "a", "b", "c" };
+import java.util.List;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+public class ListViewActivity extends ArrayAdapter<Student> {
 
-        ListView list = new ListView(this);
-        list.setAdapter(new MyAdapter(this, wordlist));
+    Context context;
+    int resource;
+    List<Student> objects;
 
-        setContentView(list);
+    public ListViewActivity(@NonNull Context context, int resource, @NonNull List<Student> objects) {
+        super(context, resource, objects);
+
+        this.context = context;
+        this.resource = resource;
+        this.objects = objects;
     }
 
-    private class MyAdapter extends ArrayAdapter<String> {
+    @NonNull
+    @Override
+    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        View view = convertView;
 
-        public MyAdapter(Context context, String[] strings) {
-            super(context, -1, -1, strings);
+        if(view == null) {
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
+            view = layoutInflater.inflate(resource, parent, false);
         }
 
+        TextView name = (TextView) view.findViewById(R.id.studentName);
+        TextView code = (TextView) view.findViewById(R.id.studentCode);
 
-        @SuppressLint("ResourceType")
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-
-            LinearLayout listLayout = new LinearLayout(ListViewActivity.this);
-            listLayout.setLayoutParams(new AbsListView.LayoutParams(
-                    AbsListView.LayoutParams.WRAP_CONTENT,
-                    AbsListView.LayoutParams.WRAP_CONTENT));
-            listLayout.setId(5000);
-
-            TextView listText = new TextView(ListViewActivity.this);
-            listText.setId(5001);
-
-            listLayout.addView(listText);
-
-            listText.setText(super.getItem(position));
-
-            return listLayout;
-        }
+        Student student = objects.get(position);
+        name.setText(student.getName());
+        code.setText(student.getCode());
+        return super.getView(position, convertView, parent);
     }
 }

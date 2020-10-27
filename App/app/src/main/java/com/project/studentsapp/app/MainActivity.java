@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.project.studentsapp.R;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
         final BottomAppBar bottomAppBar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(bottomAppBar);
+
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
