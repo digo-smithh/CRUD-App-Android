@@ -1,5 +1,7 @@
 package com.project.studentsapp.data;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,7 @@ import retrofit.Retrofit;
 
 public class CRUDActivity {
 
-    public static List<Student> getAllStudents() {
+    public List<Student> getAllStudents() {
         Call<List<Student>> call = new RetrofitConfig().getService().getAll();
         final List<Student>[] list = new List[]{new ArrayList<Student>()};
         list[0] = null;
@@ -18,7 +20,9 @@ public class CRUDActivity {
         call.enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Response<List<Student>> response, Retrofit retrofit) {
-                list[0] = response.body();
+                if(response.isSuccess()) {
+                    list[0] = response.body();
+                }
             }
 
             @Override

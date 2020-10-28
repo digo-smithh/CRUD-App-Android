@@ -19,7 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    List<Student> studentList;
+    List<Student> studentList = new ArrayList<>();
     int currentView;
 
     @Override
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void buildMainView() {
-        studentList = new ArrayList<>();
+        setContentOnListView();
 
         final BottomAppBar bottomAppBar = findViewById(R.id.bottomAppBar);
         setSupportActionBar(bottomAppBar);
@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void updateView() {
-        studentList = CRUDActivity.getAllStudents();
+    private void setContentOnListView() {
+        studentList = new CRUDActivity().getAllStudents();
         ListViewAdapter adapter = new ListViewAdapter(this, R.layout.list_item_layout, studentList);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
