@@ -1,5 +1,9 @@
 package com.project.studentsapp.data;
 
+import androidx.annotation.NonNull;
+
+import java.util.Objects;
+
 public class Student {
 
     private String code;
@@ -43,5 +47,38 @@ public class Student {
             throw  new  Exception("Email must not be more than 50 characters");
 
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return  "Code..........." + code + "\n" +
+                "Name..........." + name + "\n" +
+                "Email.........." + email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Student student = (Student) o;
+
+        return Objects.equals(code, student.code) &&
+                Objects.equals(name, student.name) &&
+                Objects.equals(email, student.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, name, email);
+    }
+
+    @NonNull
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

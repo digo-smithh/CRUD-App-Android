@@ -2,21 +2,20 @@ package com.project.studentsapp.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.project.studentsapp.R;
+import com.project.studentsapp.data.*;
 import com.project.studentsapp.data.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateView() {
+        studentList = CRUDActivity.getAllStudents();
         ListViewAdapter adapter = new ListViewAdapter(this, R.layout.list_item_layout, studentList);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(adapter);
     }
+
 }

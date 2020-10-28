@@ -1,7 +1,5 @@
 package com.project.studentsapp.data;
 
-import android.app.Service;
-
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
 
