@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/register_rounded_title_border"
+        android:background="@drawable/update_rounded_title_border"
         android:paddingTop="30px"
         android:elevation="4dp">
 
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/poppins_medium"
-            android:text="Register a student"
+            android:text="Update a student"
             android:textColor="@color/colorPrimary"
             android:textSize="28sp" />
 
@@ -90,8 +90,8 @@
         android:layout_marginTop="220dp"
         android:layout_marginBottom="30dp"
         android:layout_marginRight="30dp"
-        android:src="@drawable/ic_arrow"
-        android:background="@drawable/register_rounded_button"
+        android:src="@drawable/ic_check"
+        android:background="@drawable/update_rounded_button"
         android:elevation="4dp"/>
 
     <ImageView
@@ -99,6 +99,6 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_gravity="bottom"
-        app:srcCompat="@mipmap/humaaans" />
+        app:srcCompat="@mipmap" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
