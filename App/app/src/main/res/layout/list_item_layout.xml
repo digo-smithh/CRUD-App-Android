@@ -18,7 +18,7 @@
             android:textColor="@color/colorBlack"
             android:textSize="18sp" />
 
-        <TextView
+       <TextView
             android:id="@+id/studentCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

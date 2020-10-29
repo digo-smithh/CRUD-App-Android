@@ -61,9 +61,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return  "Code..........." + code + "\n" +
-                "Name..........." + name + "\n" +
-                "Email.........." + email;
+        return name;
     }
 
     @Override

@@ -1,14 +1,19 @@
 package com.project.studentsapp.app;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -18,7 +23,12 @@ import com.project.studentsapp.app.controllers.StudentsController;
 import com.project.studentsapp.app.models.Student;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
     List<Student> studentList = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         currentView = R.layout.activity_main;
         setContentView(currentView);
         buildMainView();
-
     }
 
     private void buildMainView() {
@@ -44,9 +53,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(bottomAppBar);
 
         final FloatingActionButton floatingActionButton = findViewById(R.id.button);
-
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
 
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,10 +73,53 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setContentOnListView() {
-        /*studentList = new CRUDActivity().getAllStudents(mainContext);
-        ListViewAdapter adapter = new ListViewAdapter(mainContext, R.layout.list_item_layout, studentList);
-        ListView listView = findViewById(R.id.listView);
-        listView.setAdapter(adapter);*/
+        //studentList = StudentsController.getAllStudents(mainContext);
+
+        List<Student> studentList = new ArrayList<Student>();
+        try {
+            studentList.add(new Student("00000", "s", "s"));
+            studentList.add(new Student("00000", "dfdfs", "s"));
+            studentList.add(new Student("00000", "dss", "s"));
+            studentList.add(new Student("00000", "aaas", "ssedsdsd"));
+            studentList.add(new Student("00000", "s", "saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            studentList.add(new Student("00000", "s222222222222222222222", "sasdsds"));
+            studentList.add(new Student("00000", "s", "s"));
+            studentList.add(new Student("00000", "dfdfs", "s"));
+            studentList.add(new Student("00000", "dss", "s"));
+            studentList.add(new Student("00000", "aaas", "ssedsdsd"));
+            studentList.add(new Student("00000", "s", "saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            studentList.add(new Student("00000", "s222222222222222222222", "sasdsds"));
+            studentList.add(new Student("00000", "s", "s"));
+            studentList.add(new Student("00000", "dfdfs", "s"));
+            studentList.add(new Student("00000", "dss", "s"));
+            studentList.add(new Student("00000", "aaas", "ssedsdsd"));
+            studentList.add(new Student("00000", "s", "saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            studentList.add(new Student("00000", "s222222222222222222222", "sasdsds"));
+        }
+        catch (Exception e)
+        {}
+
+        ArrayList<Map<String,Object>> listItem = new ArrayList<>();
+
+        for(int i = 0; i < studentList.size(); i++) {
+
+            Student student = studentList.get(i);
+            Map<String,Object> listItemMap = new HashMap<>();
+
+            listItemMap.put("id", "student " + i);
+            listItemMap.put("student", "student");
+            listItem.add(listItemMap);
+
+            SimpleAdapter listViewAdapter = new SimpleAdapter(
+                    this,
+                    listItem,
+                    android.R.layout.simple_list_item_2,
+                    new String[]{"id", "student"},
+                    new int[]{android.R.id.text1, android.R.id.text2});
+
+            ListView listView = findViewById(R.id.listView);
+            listView.setAdapter(listViewAdapter);
+        }
     }
 
     private void buildRegisterView() {
