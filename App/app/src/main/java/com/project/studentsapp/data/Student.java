@@ -2,12 +2,22 @@ package com.project.studentsapp.data;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.annotations.*;
+
 import java.util.Objects;
 
 public class Student {
 
+    @Expose
+    @SerializedName("code")
     private String code;
+
+    @Expose
+    @SerializedName("name")
     private String name;
+
+    @Expose
+    @SerializedName("email")
     private String email;
 
     public Student (String code, String name, String email) throws Exception {

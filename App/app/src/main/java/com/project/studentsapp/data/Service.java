@@ -19,12 +19,12 @@ public interface Service {
     Call<Student> getByName(@Path("code") String code);
 
     @POST("students/")
-    Call<Student> insertStudent(@Body Student student);
+    void insertStudent(@Body Student student);
 
     @PUT("students/{code}")
-    Call<Student> updateStudent(@Path("code") int code, @Body Student student);
+    void updateStudent(@Path("code") int code, @Body Student student);
 
     @DELETE("students/{code}")
-    Call<Student> deleteStudent(@Path("code") int code);
+    void deleteStudent(@Path("code") int code);
 
 }

@@ -1,6 +1,5 @@
 package com.project.studentsapp.data;
 
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +19,13 @@ public class CRUDActivity {
         call.enqueue(new Callback<List<Student>>() {
             @Override
             public void onResponse(Response<List<Student>> response, Retrofit retrofit) {
-                if(response.isSuccess()) {
                     list[0] = response.body();
-                }
             }
 
             @Override
-            public void onFailure(Throwable t) { }
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
+            }
         });
 
         return list[0];

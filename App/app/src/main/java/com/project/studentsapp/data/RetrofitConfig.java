@@ -2,6 +2,7 @@ package com.project.studentsapp.data;
 
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import com.squareup.okhttp.OkHttpClient;
 
 public class RetrofitConfig {
 
@@ -9,9 +10,11 @@ public class RetrofitConfig {
 
     public  RetrofitConfig(){
 
+        OkHttpClient okHttpClient = new OkHttpClient();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl("http://192.168.56.1:4000/")
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(okHttpClient)
                 .build();
     }
 

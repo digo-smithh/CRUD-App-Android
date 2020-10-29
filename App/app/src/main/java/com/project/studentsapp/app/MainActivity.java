@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private void setContentOnListView() {
         studentList = new CRUDActivity().getAllStudents();
         ListViewAdapter adapter = new ListViewAdapter(this, R.layout.list_item_layout, studentList);
-        ListView listView = (ListView) findViewById(R.id.listView);
+        ListView listView = findViewById(R.id.listView);
         listView.setAdapter(adapter);
     }
 
