@@ -1,4 +1,4 @@
-package com.project.studentsapp.data;
+package com.project.studentsapp.app.models;
 
 import androidx.annotation.NonNull;
 

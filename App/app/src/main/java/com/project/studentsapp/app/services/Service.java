@@ -1,4 +1,6 @@
-package com.project.studentsapp.data;
+package com.project.studentsapp.app.services;
+
+import com.project.studentsapp.app.models.Student;
 
 import java.util.List;
 
@@ -16,15 +18,17 @@ public interface Service {
     Call<List<Student>> getAll();
 
     @GET("students/{code}")
-    Call<Student> getByName(@Path("code") String code);
+    Call<Student> getByCode(@Path("code") String code);
 
     @POST("students/")
-    void insertStudent(@Body Student student);
+    Call<Student> insert(@Body Student student);
 
     @PUT("students/{code}")
-    void updateStudent(@Path("code") int code, @Body Student student);
+    Call<Student> update(@Path("code") int code, @Body Student student);
 
     @DELETE("students/{code}")
-    void deleteStudent(@Path("code") int code);
+    Call<Student> delete(@Path("code") int code);
 
+    @DELETE("students/")
+    Call<Student> deleteAll();
 }

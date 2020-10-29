@@ -1,7 +1,8 @@
-package com.project.studentsapp.app;
+package com.project.studentsapp.app.views;
 
 import com.project.studentsapp.R;
-import com.project.studentsapp.data.*;
+import com.project.studentsapp.app.models.Student;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
