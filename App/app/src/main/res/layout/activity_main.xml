@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:choiceMode="singleChoice"
-        android:divider="@android:color/holo_green_light"
-        android:dividerHeight="3sp"
-        android:paddingBottom="10sp" />
+        android:divider="@android:color/secondary_text_dark"
+        android:dividerHeight="2dp"
+        android:paddingBottom="60dp" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         style="@style/Widget.MaterialComponents.BottomAppBar"
