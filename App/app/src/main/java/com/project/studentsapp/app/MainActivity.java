@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             SimpleAdapter listViewAdapter = new SimpleAdapter(
                     this,
                     listItem,
-                    android.R.layout.simple_list_item_2,
+                    android.R.layout.simple_list_item_1,
                     new String[]{"id", "student"},
                     new int[]{android.R.id.text1, android.R.id.text2});
 
