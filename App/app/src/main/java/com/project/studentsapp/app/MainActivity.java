@@ -1,7 +1,5 @@
 package com.project.studentsapp.app;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -68,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setContentOnListView() {
-        //studentList = StudentsController.getAllStudents(mainContext);
+        studentList = StudentsController.getAllStudents(mainContext);
 
-        List<Student> studentList = new ArrayList<Student>();
+        /*List<Student> studentList = new ArrayList<Student>();
         try {
             studentList.add(new Student("00000", "s", "s"));
             studentList.add(new Student("00000", "dfdfs", "s"));
@@ -92,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
             studentList.add(new Student("00000", "s222222222222222222222", "sasdsds"));
         }
         catch (Exception e)
-        {}
+        {}*/
 
         ArrayList<Map<String,Object>> listItem = new ArrayList<>();
 
@@ -108,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             SimpleAdapter listViewAdapter = new SimpleAdapter(
                     this,
                     listItem,
-                    android.R.layout.simple_list_item_1,
+                    android.R.layout.simple_list_item_2,
                     new String[]{"id", "student"},
                     new int[]{android.R.id.text1, android.R.id.text2});
 
