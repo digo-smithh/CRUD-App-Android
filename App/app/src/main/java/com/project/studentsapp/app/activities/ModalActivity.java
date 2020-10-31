@@ -1,4 +1,4 @@
-package com.project.studentsapp.app;
+package com.project.studentsapp.app.activities;
 
 import android.app.AlertDialog;
 import android.content.Context;

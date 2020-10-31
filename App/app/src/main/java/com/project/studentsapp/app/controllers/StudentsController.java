@@ -24,61 +24,6 @@ import retrofit.Retrofit;
 
 public class StudentsController {
 
-    public static List<Student> getAllStudents(final Context mainContext) {
-        final List<Student>[] list = new List[]{new ArrayList<Student>()};
-        list[0] = null;
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,Server.BASE_URL + "students", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson = gsonBuilder.create();
-                Student[] array = gson.fromJson(response,Student[].class);
-
-                for (int i = 0; i < array.length; i++) {
-                    list[0].add(array[i]);
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(mainContext);
-        requestQueue.add(stringRequest);
-
-        return list[0];
-    }
-
-    /*public static List<Student> getAllStudents(final Context mainContext) {
-        Call<List<Student>> call = new RetrofitConfig().getService().getAll();
-        final List<Student>[] list = new List[]{new ArrayList<Student>()};
-        list[0] = null;
-
-        call.enqueue(new Callback<List<Student>>() {
-            @Override
-            public void onResponse(retrofit.Response<List<Student>> response, Retrofit retrofit) {
-                if(response.isSuccess()){
-                    list[0] = response.body();
-                }
-                else{
-                    Toast.makeText(mainContext, "Error getting students.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        return list[0];
-    }*/
-
     public static void insertStudent(final Context mainContext, String code, String name, String email){
 
         Student student = null;
