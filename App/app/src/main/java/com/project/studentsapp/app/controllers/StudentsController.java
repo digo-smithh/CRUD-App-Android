@@ -34,7 +34,7 @@ public class StudentsController {
         return studentList;
     }
 
-    public static void getAllStudentsVolley(final Context mainContext, final MainActivity current, final Method method) {
+    public static void getAllStudentsVolley(final Context mainContext, final MainActivity current, final Method methodAfterFinished) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Server.BASE_URL + "students", new Response.Listener<String>() {
             @Override
@@ -44,9 +44,10 @@ public class StudentsController {
                 Gson gson = gsonBuilder.create();
                 Student[] array = gson.fromJson(response,Student[].class);
 
+                studentList.clear();
                 Collections.addAll(studentList, array);
                 try {
-                    method.invoke(current);
+                    methodAfterFinished.invoke(current);
                 } catch (IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
                     Toast.makeText(mainContext, "Unexpected error. (status: 0013)", Toast.LENGTH_SHORT).show();
@@ -57,7 +58,7 @@ public class StudentsController {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mainContext, "Error communicating with server. Try again later.", Toast.LENGTH_SHORT).show();
                 error.printStackTrace();
             }
         });
@@ -66,7 +67,7 @@ public class StudentsController {
         requestQueue.add(stringRequest);
     }
 
-    private static void getAllStudentsRetrofit(final Context mainContext) {
+    public static void getAllStudentsRetrofit(final Context mainContext, final MainActivity current, final Method methodAfterFinished) {
 
         Call<List<Student>> call = new RetrofitConfig().getService().getAll();
 
@@ -74,16 +75,26 @@ public class StudentsController {
             @Override
             public void onResponse(retrofit.Response<List<Student>> response, Retrofit retrofit) {
                 if(response.isSuccess()){
-                    Collections.addAll(studentList, (Student[])response.body().toArray());
+                    studentList.clear();
+                    for(int i = 0; i < response.body().size(); i++) {
+                        studentList.add((Student) response.body().get(i));
+                    }
+                    try {
+                        methodAfterFinished.invoke(current);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                        Toast.makeText(mainContext, "Unexpected error. (status: 0013)", Toast.LENGTH_SHORT).show();
+                        System.exit(0013);
+                    }
                 }
                 else{
-                    Toast.makeText(mainContext, "Error getting students.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mainContext, "Error communicating with server. Try again later.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mainContext, "Error communicating with server. Try again later.", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
 
         final FloatingActionButton floatingActionButton = findViewById(R.id.button);
 
+        final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                try {
+                    buildMainView();
+                    swipeRefreshLayout.setRefreshing(false);
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                    Toast.makeText(mainContext, "Unexpected error. (status: 0012)", Toast.LENGTH_SHORT).show();
+                    System.exit(0012);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(mainContext, "Unexpected error. (status: 0014)", Toast.LENGTH_SHORT).show();
+                    System.exit(0014);
+                }
+            }
+        });
+
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,11 +96,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void callGetAll() throws NoSuchMethodException {
         Method method = MainActivity.class.getDeclaredMethod("setContentOnListView");
-        StudentsController.getAllStudentsVolley(mainContext, this, method);
+        StudentsController.getAllStudentsRetrofit(mainContext, this, method);
     }
 
     public void setContentOnListView() {
+
         ArrayList<Map<String,Object>> listItem = new ArrayList<>();
+        ListView listView = findViewById(R.id.listView);
+
+        listView.setAdapter(null);
 
         for(int i = 0; i < StudentsController.getStudentList().size(); i++) {
 
@@ -98,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                     new String[]{"id", "student"},
                     new int[]{android.R.id.text1, android.R.id.text2});
 
-            ListView listView = findViewById(R.id.listView);
             listView.setAdapter(listViewAdapter);
         }
     }

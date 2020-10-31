@@ -56,7 +56,7 @@ public class ModalActivity extends BottomSheetDialogFragment {
         public void onClick(DialogInterface dialog, int which) {
             switch (which){
                 case DialogInterface.BUTTON_POSITIVE:
-                    StudentsController.deleteAllStudents(mainContext);
+                    new StudentsController().deleteAllStudents(mainContext);
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:
