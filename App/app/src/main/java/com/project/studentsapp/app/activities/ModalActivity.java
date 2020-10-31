@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,12 +19,19 @@ import com.google.android.material.navigation.NavigationView;
 import com.project.studentsapp.R;
 import com.project.studentsapp.app.controllers.StudentsController;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 public class ModalActivity extends BottomSheetDialogFragment {
 
-    Context mainContext = null;
+    Context mainContext;
+    MainActivity current;
+    Method method;
 
-    public ModalActivity(Context context) {
+    public ModalActivity(Context context, MainActivity current, Method method) {
         this.mainContext = context;
+        this.current = current;
+        this.method = method;
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,31 +46,15 @@ public class ModalActivity extends BottomSheetDialogFragment {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                showDialog();
+                try {
+                    method.invoke(current);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    e.printStackTrace();
+                    Toast.makeText(mainContext, "Unexpected error. (status: 0013)", Toast.LENGTH_SHORT).show();
+                    System.exit(0013);
+                }
                 return true;
             }
         });
     }
-
-    private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mainContext);
-        builder.setMessage("Are you sure you want to delete all students? This action can not be undone.")
-                .setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener)
-                .show();
-    }
-
-    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            switch (which){
-                case DialogInterface.BUTTON_POSITIVE:
-                    new StudentsController().deleteAllStudents(mainContext);
-                    break;
-
-                case DialogInterface.BUTTON_NEGATIVE:
-                    break;
-            }
-        }
-    };
 }

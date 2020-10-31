@@ -1,6 +1,8 @@
 package com.project.studentsapp.app.activities;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Context mainContext = this;
     private int currentView;
+    private ModalActivity modalActivity;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -79,7 +82,15 @@ public class MainActivity extends AppCompatActivity {
         bottomAppBar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ModalActivity modalActivity = new ModalActivity(MainActivity.this);
+                Method method = null;
+                try {
+                    method = MainActivity.class.getDeclaredMethod("showDeleteDialog");
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                    Toast.makeText(mainContext, "Unexpected error. (status: 0012)", Toast.LENGTH_SHORT).show();
+                    System.exit(0012);
+                }
+                modalActivity = new ModalActivity(MainActivity.this, MainActivity.this, method);
                 modalActivity.show(getSupportFragmentManager(), modalActivity.getTag());
             }
         });
@@ -131,25 +142,25 @@ public class MainActivity extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText code = (EditText) findViewById(R.id.studentCode);
-                final EditText name = (EditText) findViewById(R.id.studentName);
-                final EditText email = (EditText) findViewById(R.id.studentEmail);
+            final EditText code = (EditText) findViewById(R.id.studentCode);
+            final EditText name = (EditText) findViewById(R.id.studentName);
+            final EditText email = (EditText) findViewById(R.id.studentEmail);
 
-                if (name.getText().toString().trim().length() == 0 || email.getText().toString().trim().length() == 0) {
-                    Toast.makeText(mainContext, "Data cannot be empty", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            if (name.getText().toString().trim().length() == 0 || email.getText().toString().trim().length() == 0) {
+                Toast.makeText(mainContext, "Data cannot be empty", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                if (code.getText().toString().trim().length() < 5) {
-                    Toast.makeText(mainContext, "Code have to be 5 characters", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            if (code.getText().toString().trim().length() < 5) {
+                Toast.makeText(mainContext, "Code have to be 5 characters", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                StudentsController.insertStudent(mainContext, code.getText().toString().trim(), name.getText().toString().trim(), email.getText().toString().trim());
+            StudentsController.insertStudent(mainContext, code.getText().toString().trim(), name.getText().toString().trim(), email.getText().toString().trim());
 
-                code.setText("");
-                name.setText("");
-                email.setText("");
+            code.setText("");
+            name.setText("");
+            email.setText("");
             }
         });
     }
@@ -183,4 +194,38 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
+
+    public void showDeleteDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mainContext);
+        builder.setMessage("Are you sure you want to delete all students? This action can not be undone.")
+                .setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener)
+                .show();
+    }
+
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    modalActivity.dismiss();
+                    StudentsController.deleteAllStudents(mainContext);
+                    try {
+                        buildMainView();
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                        Toast.makeText(mainContext, "Unexpected error. (status: 0012)", Toast.LENGTH_SHORT).show();
+                        System.exit(0012);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(mainContext, "Unexpected error. (status: 0014)", Toast.LENGTH_SHORT).show();
+                        System.exit(0014);
+                    }
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    modalActivity.dismiss();
+                    break;
+            }
+        }
+    };
 }
