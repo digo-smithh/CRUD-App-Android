@@ -1,7 +1,5 @@
 package com.project.studentsapp.app.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,30 +10,18 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.project.studentsapp.R;
-import com.project.studentsapp.app.config.RetrofitConfig;
-import com.project.studentsapp.app.config.Server;
 import com.project.studentsapp.app.controllers.StudentsController;
 import com.project.studentsapp.app.models.Student;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Retrofit;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,17 +29,26 @@ public class MainActivity extends AppCompatActivity {
     private Context mainContext = this;
     private int currentView;
 
-    List<Student> studentList = new ArrayList<>();
-
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         currentView = R.layout.activity_main;
         setContentView(currentView);
-        buildMainView();
+
+        try {
+            buildMainView();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            Toast.makeText(mainContext, "Unexpected error. (status: 0012)", Toast.LENGTH_SHORT).show();
+            System.exit(0012);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(mainContext, "Unexpected error. (status: 0014)", Toast.LENGTH_SHORT).show();
+            System.exit(0014);
+        }
     }
 
-    private void buildMainView() {
+    public void buildMainView() throws NoSuchMethodException {
         callGetAll();
 
         final BottomAppBar bottomAppBar = findViewById(R.id.bottomAppBar);
@@ -79,65 +74,17 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*private void getAllStudents(final Context mainContext) {
-        Call<List<Student>> call = new RetrofitConfig().getService().getAll();
-        call.enqueue(new Callback<List<Student>>() {
-            @Override
-            public void onResponse(retrofit.Response<List<Student>> response, Retrofit retrofit) {
-                if(response.isSuccess()){
-                    studentList = response.body();
-                    setContentOnListView();
-                }
-                else{
-                    Toast.makeText(mainContext, "Error getting students.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
-
-    public void getAllStudents(final Context mainContext) {
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Server.BASE_URL + "students", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                GsonBuilder gsonBuilder = new GsonBuilder();
-                Gson gson = gsonBuilder.create();
-                Student[] array = gson.fromJson(response,Student[].class);
-
-                for (int i = 0; i < array.length; i++) {
-                    studentList.add(array[i]);
-                }
-
-                setContentOnListView();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
-                error.printStackTrace();
-            }
-        });
-
-        RequestQueue requestQueue = Volley.newRequestQueue(mainContext);
-        requestQueue.add(stringRequest);
+    public void callGetAll() throws NoSuchMethodException {
+        Method method = MainActivity.class.getDeclaredMethod("setContentOnListView");
+        StudentsController.getAllStudentsVolley(mainContext, this, method);
     }
 
-    private void callGetAll() {
-        getAllStudents(mainContext);
-    }
-
-    private void setContentOnListView() {
+    public void setContentOnListView() {
         ArrayList<Map<String,Object>> listItem = new ArrayList<>();
 
-        for(int i = 0; i < studentList.size(); i++) {
+        for(int i = 0; i < StudentsController.getStudentList().size(); i++) {
 
-            Student student = studentList.get(i);
+            Student student = StudentsController.getStudentList().get(i);
             Map<String,Object> listItemMap = new HashMap<>();
 
             listItemMap.put("id", "student " + i);
@@ -156,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void buildRegisterView() {
+    public void buildRegisterView() {
         final ImageButton imageButton = (ImageButton) findViewById(R.id.insert_button);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +143,18 @@ public class MainActivity extends AppCompatActivity {
         if (currentView == R.layout.register_student_layout) {
             currentView = R.layout.activity_main;
             setContentView(currentView);
-            buildMainView();
+
+            try {
+                buildMainView();
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+                Toast.makeText(mainContext, "Unexpected error. (status: 0012)", Toast.LENGTH_SHORT).show();
+                System.exit(0012);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(mainContext, "Unexpected error. (status: 0014)", Toast.LENGTH_SHORT).show();
+                System.exit(0014);
+            }
         }
         else {
             super.onBackPressed();
