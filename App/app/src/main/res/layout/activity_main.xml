@@ -17,9 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="singleChoice"
-            android:divider="@color/colorLightGray"
-            android:dividerHeight="2dp"
-            android:paddingBottom="60dp" />
+            android:divider="@color/colorLightGray" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

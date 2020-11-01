@@ -55,6 +55,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.list_item_layout, parent, false);
+            studentCode = (TextView) convertView.findViewById(R.id.studentCodeListItem);
             studentName = (TextView) convertView.findViewById(R.id.studentNameListItem);
             studentEmail = (TextView) convertView.findViewById(R.id.studentEmailListItem);
             info = (ImageView) convertView.findViewById(R.id.item_info);
@@ -69,6 +70,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
         result.startAnimation(animation);
         lastPosition = position;
 
+        studentCode.setText(student.getCode());
         studentName.setText(student.getName());
         studentEmail.setText(student.getEmail());
         info.setOnClickListener(this);
