@@ -28,9 +28,9 @@ import retrofit.Retrofit;
 
 public class StudentsController {
 
-    private static List<Student> studentList = new ArrayList<>();
+    private static ArrayList<Student> studentList = new ArrayList<>();
 
-    public static List<Student> getStudentList() {
+    public static ArrayList<Student> getStudentList() {
         return studentList;
     }
 

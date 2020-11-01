@@ -18,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.project.studentsapp.R;
+import com.project.studentsapp.app.adapters.CustomListAdapter;
 import com.project.studentsapp.app.controllers.StudentsController;
 import com.project.studentsapp.app.models.Student;
 
@@ -112,29 +113,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setContentOnListView() {
 
-        ArrayList<Map<String,Object>> listItem = new ArrayList<>();
         ListView listView = findViewById(R.id.listView);
 
         listView.setAdapter(null);
 
-        for(int i = 0; i < StudentsController.getStudentList().size(); i++) {
+        CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudentList(), mainContext);
 
-            Student student = StudentsController.getStudentList().get(i);
-            Map<String,Object> listItemMap = new HashMap<>();
-
-            listItemMap.put("id", "student " + i);
-            listItemMap.put("student", "student");
-            listItem.add(listItemMap);
-
-            SimpleAdapter listViewAdapter = new SimpleAdapter(
-                    this,
-                    listItem,
-                    android.R.layout.simple_list_item_2,
-                    new String[]{"id", "student"},
-                    new int[]{android.R.id.text1, android.R.id.text2});
-
-            listView.setAdapter(listViewAdapter);
-        }
+        listView.setAdapter(listViewAdapter);
     }
 
     public void buildRegisterView() {
