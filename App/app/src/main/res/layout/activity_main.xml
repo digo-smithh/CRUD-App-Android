@@ -33,6 +33,7 @@
         app:fabCradleRoundedCornerRadius="0dp"
         app:fabAlignmentMode="center"
         android:elevation="4dp"
+        app:hideOnScroll="false"
         app:menu="@menu/bottom_app_bar_menu"
         app:navigationIcon="@drawable/ic_more"/>
 
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorDarkBlue"
+        app:hideOnScroll="false"
         app:layout_anchor="@id/bottomAppBar"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
