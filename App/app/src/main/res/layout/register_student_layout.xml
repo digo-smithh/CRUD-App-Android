@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:background="@drawable/register_rounded_title_border"
+        android:background="@drawable/rounded_title_border"
         android:paddingTop="30px"
         android:elevation="4dp">
 
@@ -37,18 +37,19 @@
 
         <EditText
             android:id="@+id/studentCode"
-            android:layout_width="80sp"
+            android:layout_width="90sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:background="@drawable/border_edit_text"
             android:hint="Code"
+            android:maxLines="1"
             android:maxLength="5"
-            android:paddingLeft="5px"
-            android:paddingTop="5px"
-            android:paddingRight="5px"
-            android:paddingBottom="20px"
             android:textColorHint="@color/colorGray"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"/>
 
         <EditText
             android:id="@+id/studentName"
@@ -57,11 +58,12 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/border_edit_text"
             android:hint="Name"
+            android:maxLines="1"
             android:maxLength="50"
-            android:paddingLeft="5px"
-            android:paddingTop="5px"
-            android:paddingRight="5px"
-            android:paddingBottom="20px"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/colorGray"
             android:textSize="20sp" />
 
@@ -72,10 +74,11 @@
             android:background="@drawable/border_edit_text"
             android:hint="Email"
             android:maxLength="50"
-            android:paddingLeft="5px"
-            android:paddingTop="5px"
-            android:paddingRight="5px"
-            android:paddingBottom="20px"
+            android:maxLines="1"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textColorHint="@color/colorGray"
             android:textSize="20sp" />
 
@@ -87,10 +90,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|right"
         android:layout_marginTop="220dp"
-        android:layout_marginBottom="30dp"
         android:layout_marginRight="45dp"
         android:src="@drawable/ic_arrow"
-        android:background="@drawable/register_rounded_button"
+        android:background="@drawable/rounded_button"
         android:elevation="4dp"/>
 
     <ImageView
