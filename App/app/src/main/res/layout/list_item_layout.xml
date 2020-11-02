@@ -14,46 +14,48 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/list_item_rounded_border"
-        android:padding="12dp">
-
-    <TextView
-        android:id="@+id/studentCodeListItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="Code Here"
-        android:textSize="20sp"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="#555555"/>
+        android:padding="12dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
 
     <TextView
         android:id="@+id/studentNameListItem"
-        android:layout_below="@+id/studentCodeListItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:text="Name Here"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:fontFamily="@font/poppins_medium"
         android:textColor="#252525"/>
 
     <TextView
-        android:id="@+id/studentEmailListItem"
+        android:id="@+id/studentCodeAndEmailListItem"
         android:layout_below="@+id/studentNameListItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="-2dp"
         android:text="Email Here"
+        android:textSize="12sp"
         android:textColor="#858585" />
 
-    <ImageView
-        android:id="@+id/item_info"
+    <ImageButton
+        android:id="@+id/buttonEditStudent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@android:drawable/ic_dialog_info" />
+        android:background="#00AAAAAA"
+        android:src="@drawable/ic_edit" />
+
+    <ImageButton
+        android:id="@+id/buttonDeleteStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="60dp"
+        android:layout_centerVertical="true"
+        android:background="#00AAAAAA"
+        android:src="@drawable/ic_delete" />
 
     </RelativeLayout>
 

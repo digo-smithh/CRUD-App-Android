@@ -18,16 +18,14 @@ import java.util.ArrayList;
 
 public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnClickListener{
 
+    private int lastPosition = -1;
     private ArrayList<Student> dataSet;
-    Context mainContext;
+    private Context mainContext;
 
-    TextView studentCode;
-    TextView studentName;
-    TextView studentEmail;
-    ImageButton editButton;
-    ImageButton deleteButton;
-
-    ImageView info;
+    private TextView studentName;
+    private TextView studentEmail;
+    private ImageButton buttonEditStudent;
+    private ImageButton buttonDeleteStudent;
 
     public CustomListAdapter(ArrayList<Student> data, Context mainContext) {
         super(mainContext, R.layout.list_item_layout, data);
@@ -36,14 +34,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
     }
 
     @Override
-    public void onClick(View v) {
-
-        int position = (Integer)v.getTag();
-        Object object = getItem(position);
-        Student student = (Student)object;
-    }
-
-    private int lastPosition = -1;
+    public void onClick(View v) { }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -55,10 +46,10 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.list_item_layout, parent, false);
-            studentCode = (TextView) convertView.findViewById(R.id.studentCodeListItem);
             studentName = (TextView) convertView.findViewById(R.id.studentNameListItem);
-            studentEmail = (TextView) convertView.findViewById(R.id.studentEmailListItem);
-            info = (ImageView) convertView.findViewById(R.id.item_info);
+            studentEmail = (TextView) convertView.findViewById(R.id.studentCodeAndEmailListItem);
+            buttonEditStudent = (ImageButton) convertView.findViewById(R.id.buttonEditStudent);
+            buttonDeleteStudent = (ImageButton) convertView.findViewById(R.id.buttonDeleteStudent);
 
             result=convertView;
         }
@@ -70,11 +61,27 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
         result.startAnimation(animation);
         lastPosition = position;
 
-        studentCode.setText(student.getCode());
         studentName.setText(student.getName());
-        studentEmail.setText(student.getEmail());
-        info.setOnClickListener(this);
-        info.setTag(position);
+        studentEmail.setText(student.getCode() + "\n\n" +student.getEmail());
+        buttonEditStudent.setTag(position);
+        buttonDeleteStudent.setTag(position);
+
+        buttonEditStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = (Integer)v.getTag();
+                Object object = getItem(position);
+                Student student = (Student)object;
+            }
+        });
+        buttonDeleteStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = (Integer)v.getTag();
+                Object object = getItem(position);
+                Student student = (Student)object;
+            }
+        });
 
         return convertView;
     }

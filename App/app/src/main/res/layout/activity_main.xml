@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="singleChoice"
-            android:divider="@color/colorLightGray" />
+            android:divider="@android:color/transparent"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
-        app:backgroundTint="#F9F9F9"
+        app:backgroundTint="@color/colorDarkBlue"
         app:hideOnScroll="true"
         app:layout_anchor="@id/bottomAppBar"/>
 
