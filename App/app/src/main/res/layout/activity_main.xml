@@ -17,12 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="singleChoice"
+            android:paddingBottom="55dp"
             android:divider="@android:color/transparent"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        style="@style/Widget.MaterialComponents.BottomAppBar"
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
@@ -32,10 +32,9 @@
         app:fabCradleMargin="0dp"
         app:fabCradleRoundedCornerRadius="0dp"
         app:fabAlignmentMode="center"
-        app:hideOnScroll="true"
         android:elevation="4dp"
         app:menu="@menu/bottom_app_bar_menu"
-        app:navigationIcon="@drawable/ic_config"/>
+        app:navigationIcon="@drawable/ic_more"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button"
@@ -43,7 +42,6 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
         app:backgroundTint="@color/colorDarkBlue"
-        app:hideOnScroll="true"
         app:layout_anchor="@id/bottomAppBar"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

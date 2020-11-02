@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,16 +22,21 @@ import com.project.studentsapp.app.controllers.StudentsController;
 import com.project.studentsapp.app.models.Student;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private Context mainContext = this;
     private int currentView;
+    private Context mainContext = this;
     private ModalActivity modalActivity;
+
+    public int getCurrentView() {
+        return currentView;
+    }
+
+    public void setCurrentView(int currentView) {
+        this.currentView = currentView;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         final FloatingActionButton floatingActionButton = findViewById(R.id.button);
 
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -117,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setAdapter(null);
 
-        CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudentList(), mainContext);
+        CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudentList(), mainContext, this);
 
         listView.setAdapter(listViewAdapter);
     }
@@ -150,6 +155,43 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void buildUpdateView(Student student) {
+        /*final ImageButton imageButton = (ImageButton) findViewById(R.id.insert_button);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final EditText code = (EditText) findViewById(R.id.studentCode);
+                final EditText name = (EditText) findViewById(R.id.studentName);
+                final EditText email = (EditText) findViewById(R.id.studentEmail);
+
+                if (name.getText().toString().trim().length() == 0 || email.getText().toString().trim().length() == 0) {
+                    Toast.makeText(mainContext, "Data cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (code.getText().toString().trim().length() < 5) {
+                    Toast.makeText(mainContext, "Code have to be 5 characters", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                StudentsController.insertStudent(mainContext, code.getText().toString().trim(), name.getText().toString().trim(), email.getText().toString().trim());
+
+                code.setText("");
+                name.setText("");
+                email.setText("");
+            }
+        });*/
+
+        final EditText code = (EditText) findViewById(R.id.studentCodeUpdate);
+        code.setText(student.getCode());
+
+        final EditText name = (EditText) findViewById(R.id.studentNameUpdate);
+        name.setText(student.getName());
+
+        final EditText email = (EditText) findViewById(R.id.studentEmailUpdate);
+        email.setText(student.getEmail());
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.bottom_app_bar_menu, menu);
@@ -159,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if (currentView == R.layout.register_student_layout) {
+        if (currentView == R.layout.register_student_layout || currentView == R.layout.update_student_layout) {
             currentView = R.layout.activity_main;
             setContentView(currentView);
 

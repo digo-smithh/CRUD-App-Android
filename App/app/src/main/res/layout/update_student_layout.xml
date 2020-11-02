@@ -36,8 +36,8 @@
         android:paddingRight="30dp">
 
         <EditText
-            android:id="@+id/studentCode"
-            android:layout_width="80sp"
+            android:id="@+id/studentCodeUpdate"
+            android:layout_width="90sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:background="@drawable/border_edit_text"
@@ -48,11 +48,13 @@
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:paddingTop="10dp"
+            android:editable="false"
             android:paddingBottom="10dp"
-            android:textColorHint="@color/colorGray"/>
+            android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorGray"/>
 
         <EditText
-            android:id="@+id/studentName"
+            android:id="@+id/studentNameUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
@@ -68,7 +70,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/studentEmail"
+            android:id="@+id/studentEmailUpdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_edit_text"
