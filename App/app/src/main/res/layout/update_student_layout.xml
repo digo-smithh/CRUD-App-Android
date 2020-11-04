@@ -43,6 +43,7 @@
             android:background="@drawable/border_edit_text"
             android:hint="Code"
             android:maxLength="5"
+            android:inputType="text"
             android:maxLines="1"
             android:textSize="20sp"
             android:paddingStart="15dp"
@@ -60,6 +61,7 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/border_edit_text"
             android:hint="Name"
+            android:inputType="text"
             android:maxLines="1"
             android:maxLength="50"
             android:paddingStart="15dp"
@@ -76,6 +78,7 @@
             android:background="@drawable/border_edit_text"
             android:hint="Email"
             android:maxLength="50"
+            android:inputType="text"
             android:maxLines="1"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -86,7 +89,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/insert_button"
+        android:id="@+id/update_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|right"

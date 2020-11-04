@@ -116,10 +116,64 @@ public class StudentsController {
             @Override
             public void onResponse(retrofit.Response<Student> response, Retrofit retrofit) {
                 if(response.isSuccess()){
-                    Toast.makeText(mainContext, "Student was include successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mainContext, "Student was included successfully", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(mainContext, "Error inserting student.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public static void updateStudent(final Context mainContext, String code, String name, String email){
+
+        Student student = null;
+
+        try {
+            student = new Student(code, name, email);
+        }
+        catch (Exception e) {
+            Toast.makeText(mainContext, "Student data was entered incorrectly.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Call<Student> call = new RetrofitConfig().getService().update(code, student);
+        call.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(retrofit.Response<Student> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    Toast.makeText(mainContext, "Student was updated successfully", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(mainContext, "Error updating student.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(mainContext, "Error communicating with server.", Toast.LENGTH_SHORT).show();
+                t.printStackTrace();
+            }
+        });
+    }
+
+    public static void deleteStudent(final Context mainContext, String code) {
+
+        Call<Student> call = new RetrofitConfig().getService().delete(code);
+        call.enqueue(new Callback<Student>(){
+            @Override
+            public void onResponse(retrofit.Response<Student> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    Toast.makeText(mainContext, "Student was deleted successfully", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(mainContext, "Error deleting student.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -138,7 +192,7 @@ public class StudentsController {
             @Override
             public void onResponse(retrofit.Response<Student> response, Retrofit retrofit) {
                 if(response.isSuccess()){
-                    Toast.makeText(mainContext, "All students all deleted successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mainContext, "All students were deleted successfully", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Toast.makeText(mainContext, "Error deleting students.", Toast.LENGTH_SHORT).show();

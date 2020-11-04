@@ -24,10 +24,10 @@ public interface Service {
     Call<Student> insert(@Body Student student);
 
     @PUT("students/{code}")
-    Call<Student> update(@Path("code") int code, @Body Student student);
+    Call<Student> update(@Path("code") String code, @Body Student student);
 
     @DELETE("students/{code}")
-    Call<Student> delete(@Path("code") int code);
+    Call<Student> delete(@Path("code") String code);
 
     @DELETE("students/")
     Call<Student> deleteAll();

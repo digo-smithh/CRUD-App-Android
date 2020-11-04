@@ -8,7 +8,6 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.project.studentsapp.R;
@@ -24,7 +23,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
     private MainActivity current;
 
     private TextView studentName;
-    private TextView studentEmail;
+    private TextView studentCodeAndEmail;
     private ImageButton buttonEditStudent;
     private ImageButton buttonDeleteStudent;
 
@@ -48,7 +47,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
         LayoutInflater inflater = LayoutInflater.from(getContext());
         convertView = inflater.inflate(R.layout.list_item_layout, parent, false);
         studentName = (TextView) convertView.findViewById(R.id.studentNameListItem);
-        studentEmail = (TextView) convertView.findViewById(R.id.studentCodeAndEmailListItem);
+        studentCodeAndEmail = (TextView) convertView.findViewById(R.id.studentCodeAndEmailListItem);
         buttonEditStudent = (ImageButton) convertView.findViewById(R.id.buttonEditStudent);
         buttonDeleteStudent = (ImageButton) convertView.findViewById(R.id.buttonDeleteStudent);
         
@@ -62,7 +61,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
         else
             studentName.setText(student.getName().substring(0, 22) + "...");
 
-        studentEmail.setText(student.getCode() + "\n\n" +student.getEmail());
+        studentCodeAndEmail.setText(student.getCode() + "\n\n" +student.getEmail());
         buttonEditStudent.setTag(position);
         buttonDeleteStudent.setTag(position);
 
@@ -83,6 +82,7 @@ public class CustomListAdapter extends ArrayAdapter<Student> implements View.OnC
                 int position = (Integer)v.getTag();
                 Object object = getItem(position);
                 Student student = (Student)object;
+                current.showDeleteDialog(student);
             }
         });
 
