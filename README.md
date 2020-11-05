@@ -6,7 +6,7 @@ Android and NodeJS project to add, update and delete students from a school. It 
 
 Just download the project and run them separetely. To run the android app, you can either run the apk or open it in an IDE and run it there. To run the api, open it in a terminal and use:
 
-```npm
+```node
 npm install
 npm start
 ```
