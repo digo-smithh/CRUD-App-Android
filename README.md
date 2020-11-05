@@ -28,4 +28,4 @@ module.exports = {
 
 ## Meta
 
-Project developed by [Eduardo Migueis](https://github.com/edumigueis) [and Rodrigo Smith](https://github.com/digo-smithh). Licensed under the [APACHE 2.0](https://choosealicense.com/licenses/apache-2.0/) license.
+Project developed by [Eduardo Migueis](https://github.com/edumigueis) and [Rodrigo Smith](https://github.com/digo-smithh). Licensed under the [APACHE 2.0](https://choosealicense.com/licenses/apache-2.0/) license.
