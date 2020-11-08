@@ -36,10 +36,6 @@ exports.findOne = (req, res) => {
   Student.findByCode(req.params.code, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `The student with the code: ${req.params.code} wasn't found.`,
-        });
-      } else {
         res.status(500).send({
           message: "Error while searching for the student with the code: " + req.params.code,
         });

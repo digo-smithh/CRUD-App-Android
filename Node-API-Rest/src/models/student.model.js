@@ -27,17 +27,13 @@ Student.create = (newStudent, result) => {
 Student.findByCode = (studentCode, result) => {
   sql.query(`SELECT * FROM student WHERE code = ${studentCode}`, (err, res) => {
 
-    if (res.recordset.length > 0) {
-      result(null, res.recordset[0]);
-      return;
-    }
-
     if (err) {
       result(err, null);
       return;
     }
 
-    result({kind: "not_found"},null);
+    result(null, res.recordset[0]);
+    return;
   });
 };
 

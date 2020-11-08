@@ -148,20 +148,26 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     StudentsController.getStudent(editText.getText().toString().trim(), mainContext, MainActivity.this, method);
-                    coordinatorLayout.setVisibility(View.INVISIBLE);
                 }
             }
         });
     }
 
     public void setStudentResult() {
-        ListView listView = findViewById(R.id.listView);
+        if(StudentsController.getStudent().get(0) == null)
+            Toast.makeText(mainContext, "Student not found", Toast.LENGTH_SHORT).show();
+        else {
+            ListView listView = findViewById(R.id.listView);
 
-        listView.setAdapter(null);
+            listView.setAdapter(null);
 
-        CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudent(), mainContext, this);
+            CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudent(), mainContext, this);
 
-        listView.setAdapter(listViewAdapter);
+            listView.setAdapter(listViewAdapter);
+
+            final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.containerSearch);
+            coordinatorLayout.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void callGetAll() throws NoSuchMethodException {
