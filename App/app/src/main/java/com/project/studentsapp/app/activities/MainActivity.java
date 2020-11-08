@@ -1,6 +1,7 @@
 package com.project.studentsapp.app.activities;
 
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -67,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
 
         final SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeToRefresh);
 
+        final ImageButton imageButton = (ImageButton) findViewById(R.id.searchButton);
+
+        final View search = (View) findViewById(R.id.search);
+
+        final EditText editText = (EditText) findViewById(R.id.searchCode);
+
+        final CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.containerSearch);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -109,6 +119,49 @@ public class MainActivity extends AppCompatActivity {
                 buildRegisterView();
             }
         });
+
+        coordinatorLayout.setVisibility(View.INVISIBLE);
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (coordinatorLayout.getVisibility() == View.INVISIBLE) {
+                    coordinatorLayout.setVisibility(View.VISIBLE);
+                }
+                else {
+                    coordinatorLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!editText.getText().toString().trim().equals("")){
+                    Method method = null;
+                    try {
+                        method = MainActivity.class.getDeclaredMethod("setStudentResult");
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                        Toast.makeText(mainContext, "Unexpected error. (status: 0012)", Toast.LENGTH_SHORT).show();
+                        System.exit(0012);
+                    }
+
+                    StudentsController.getStudent(editText.getText().toString().trim(), mainContext, MainActivity.this, method);
+                    coordinatorLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+    }
+
+    public void setStudentResult() {
+        ListView listView = findViewById(R.id.listView);
+
+        listView.setAdapter(null);
+
+        CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudent(), mainContext, this);
+
+        listView.setAdapter(listViewAdapter);
     }
 
     public void callGetAll() throws NoSuchMethodException {
@@ -118,13 +171,18 @@ public class MainActivity extends AppCompatActivity {
 
     public void setContentOnListView() {
 
-        ListView listView = findViewById(R.id.listView);
+        if(StudentsController.getStudentList().get(0) == null) {
+            Toast.makeText(mainContext, "Student not found", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            ListView listView = findViewById(R.id.listView);
 
-        listView.setAdapter(null);
+            listView.setAdapter(null);
 
-        CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudentList(), mainContext, this);
+            CustomListAdapter listViewAdapter = new CustomListAdapter(StudentsController.getStudentList(), mainContext, this);
 
-        listView.setAdapter(listViewAdapter);
+            listView.setAdapter(listViewAdapter);
+        }
     }
 
     public void buildRegisterView() {

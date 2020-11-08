@@ -1,6 +1,7 @@
 package com.project.studentsapp.app.controllers;
 
 import android.content.Context;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,9 +30,15 @@ import retrofit.Retrofit;
 public class StudentsController {
 
     private static ArrayList<Student> studentList = new ArrayList<>();
+    private static Student student;
 
     public static ArrayList<Student> getStudentList() {
         return studentList;
+    }
+    public static ArrayList<Student> getStudent() {
+        ArrayList<Student> arrayList = new ArrayList<>();
+        arrayList.add(student);
+        return arrayList;
     }
 
     public static void getAllStudentsVolley(final Context mainContext, final MainActivity current, final Method methodAfterFinished) {
@@ -65,6 +72,35 @@ public class StudentsController {
 
         RequestQueue requestQueue = Volley.newRequestQueue(mainContext);
         requestQueue.add(stringRequest);
+    }
+
+    public static void getStudent(String code, final Context mainContext, final MainActivity current, final Method methodAfterFinished) {
+
+        Call<Student> call = new RetrofitConfig().getService().getByCode(code);
+
+        call.enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(retrofit.Response<Student> response, Retrofit retrofit) {
+                if(response.isSuccess()){
+                    student = response.body();
+                    try {
+                        methodAfterFinished.invoke(current);
+                    } catch (IllegalAccessException | InvocationTargetException e) {
+                        e.printStackTrace();
+                        Toast.makeText(mainContext, "Unexpected error. (status: 0013)", Toast.LENGTH_SHORT).show();
+                        System.exit(0013);
+                    }
+                }
+                else{
+                    Toast.makeText(mainContext, "Error communicating with server. Try again later.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(mainContext, "Error communicating with server. Try again later.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public static void getAllStudentsRetrofit(final Context mainContext, final MainActivity current, final Method methodAfterFinished) {
