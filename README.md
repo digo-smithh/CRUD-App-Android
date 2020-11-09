@@ -3,8 +3,8 @@
 Android and NodeJS project to add, update and delete students from a school. It consists of an API and an Android front-end. The API uses mssql driver, express and body-parser to receive requests and deal with the database. The android app uses the Material UI library, volley and retrofit.
 
 <p float="left">
-  <img src="/img1.jpeg" width="300" />
-  <img src="img2.jpeg" width="300" /> 
+  <img src="/img1.jpeg" width="250" />
+  <img src="img2.jpeg" width="250" /> 
 </p>
 
 ## Installation and Setup
@@ -30,7 +30,14 @@ module.exports = {
       }
   };
 ```
-
+The SQL code to create the table:
+```sql
+CREATE TABLE Student(
+code CHAR(5) NOT NULL,
+name VARCHAR(50) NOT NULL,
+email VARCHAR(50) NOT NULL
+)
+```
 ## Meta
 
 Project developed by [Eduardo Migueis](https://github.com/edumigueis) and [Rodrigo Smith](https://github.com/digo-smithh). Licensed under the [APACHE 2.0](https://choosealicense.com/licenses/apache-2.0/) license.
