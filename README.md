@@ -2,7 +2,10 @@
 
 Android and NodeJS project to add, update and delete students from a school. It consists of an API and an Android front-end. The API uses mssql driver, express and body-parser to receive requests and deal with the database. The android app uses the Material UI library, volley and retrofit.
 
-![Register Screen](img1.jpeg "Register Screen") ![Main Screen](img2.jpeg "Main Screen")
+<p float="left">
+  <img src="/img1.jpeg" width="100" />
+  <img src="img2.jpeg" width="100" /> 
+</p>
 
 ## Installation and Setup
 
