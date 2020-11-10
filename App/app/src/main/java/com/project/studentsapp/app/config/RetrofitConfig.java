@@ -1,10 +1,10 @@
 package com.project.studentsapp.app.config;
 
-import retrofit.GsonConverterFactory;
-import retrofit.Retrofit;
+        import retrofit.GsonConverterFactory;
+        import retrofit.Retrofit;
 
-import com.project.studentsapp.app.services.Service;
-import com.squareup.okhttp.OkHttpClient;
+        import com.project.studentsapp.app.services.Service;
+        import com.squareup.okhttp.OkHttpClient;
 
 public class RetrofitConfig {
 
